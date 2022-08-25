@@ -1,0 +1,28 @@
+import React                    from "react";
+import { Route, IndexRoute }    from "react-router";
+import App                      from "./components/index";
+import About                    from "./components/about/about";
+import TimelineContainer        from "./components/timeline/timelineContainer";
+import RegistrationContainer    from "./components/auth/registrationContainer";
+import LoginContainer           from "./components/auth/loginContainer";
+import VotingResultsContainer   from "./components/votingResults/votingResultContainer";
+import AdminContainer           from "./components/admin/adminContainer";
+import requiresAuth             from "./components/common/requiresAuthContainer";
+import NotFoundPage             from "./components/common/notFoundPage";
+import Profile                  from "./components/profile/profileContainer";
+
+export default (
+    <Route component={App} path="/">
+        <IndexRoute component={TimelineContainer}/>
+        <Route path="login(?returnUrl=:returnUrl)" component={LoginContainer} />
+        <Route path="register" component={RegistrationContainer} />
+        <Route path="about" component={About} />
+        <Route path="results" component={VotingResultsContainer} />
+        <Route path="timeline(?search=:search)" component={TimelineContainer}>
+            <Route path=":event" component={TimelineContainer} />
+        </Route>
+        <Route path="admin/users(?page=:page)" component={requiresAuth(AdminContainer, {role: "admin", redirectTo: "/"})}/>
+        <Route path="user/profile/:id" component={Profile} />
+        <Route path="*" component={NotFoundPage}/>
+    </Route>
+);

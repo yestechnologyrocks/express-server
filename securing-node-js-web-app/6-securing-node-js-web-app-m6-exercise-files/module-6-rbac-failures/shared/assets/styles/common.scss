@@ -1,0 +1,128 @@
+@mixin flex-item-dynamic($flex-grow, $flex-shrink, $flex-basis: auto) {
+  flex: $flex-grow $flex-shrink $flex-basis;
+}
+
+@mixin flex-container-direction($direction, $wrap: nowrap){
+  flex-flow: $direction #{$wrap};
+  display: flex;
+}
+
+@mixin background-opacity($color, $opacity: 0.3) {
+  background: $color; /* The Fallback */
+  background: rgba($color, $opacity);
+}
+
+.flex-row-wrap {
+  flex-flow: row wrap;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.btn-primary {
+  color: white;
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  color: $color-light-grey--lighten-20;
+  background-color: $color-dark-grey--darken-5;
+  border-color: $color-dark-grey--darken-5;
+}
+
+.btn-primary:hover {
+  color: $color-light-grey--lighten-30;
+  background-color: $color-primary-pink;
+  border-color: $color-light-grey--lighten-20;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.flex-column {
+  @include flex-container-direction(column);
+}
+
+.flex-row {
+  @include flex-container-direction(row);
+}
+
+.flex-align-center {
+  align-items: center;
+}
+
+.area-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding: 30px;
+}
+
+.area-container_body {
+  @include background-opacity($color-light-grey--lighten-5, 0.65);
+  padding: 20px;
+}
+
+.area-container_banner {
+  display: flex;
+  flex-flow: row nowrap;
+  @include background-opacity($color-medium-grey, 0.75);
+  align-items: center;
+  padding: 0 20px;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.page-button {
+  width: 50px;
+}
+
+.table {
+  @include flex-item-dynamic(1, 0);
+  align-self: center;
+  width: 100%
+}
+
+.table th {
+  font-size: 1.5em;
+  background: $color-dark-grey--darken-5;
+  color: $color-light-grey--lighten-20;
+  padding: 10px;
+}
+
+.table td {
+  padding: 10px;
+}
+
